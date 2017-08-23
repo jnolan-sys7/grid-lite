@@ -1,0 +1,89 @@
+
+$breakpoint-large: 1280px;
+$breakpoint-medium: 1024px;
+$breakpoint-small: 768px;
+
+$max-columns: 12;
+
+@mixin breakdown($large, $medium, $small) {
+
+
+	&.breakdown-#{$large}-#{$medium}-#{$small} .cell {
+
+
+		width: calc( 100% / #{$large} );
+		@if $large == 1 {
+			display: block;
+		} @else {
+			display: table-cell;
+		}
+
+		@media screen and (max-width: $breakpoint-large) {
+			width: calc( 100% / #{$large} );
+			@if $large == 1 {
+				display: block;
+			} @else {
+				display: table-cell;
+			}
+		}
+
+		@media screen and (
+			max-width: $breakpoint-medium) { width: calc( 100% / #{$medium} );
+			@if $medium == 1 {
+				display: block;
+			} @else {
+				display: table-cell;
+			}
+		}
+
+		@media screen and (max-width: $breakpoint-small) {
+			width: calc( 100% / #{$small} );
+			@if $small == 1 {
+				display: block;
+			} @else {
+				display: table-cell;
+			}
+		}
+
+	}
+
+
+
+}
+
+.grid-lite {
+
+
+	box-sizing: border-box;
+	width: 100%;
+	display: block;
+	// flex-wrap: wrap;
+
+	&:after {
+		content: "";
+		display: table;
+		clear: both;
+	}
+
+	.cell {
+		box-sizing: border-box;
+		float: left;
+		display: block;
+	}
+
+
+	@for $large from 1 through $max-columns {
+		@for $medium from 1 through $large {
+			@for $small from 1 through $medium {
+				@include breakdown($large, $medium, $small);
+			}
+		}
+	}
+
+
+
+
+}
+
+
+
