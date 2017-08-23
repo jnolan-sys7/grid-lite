@@ -1,2 +1,2 @@
 # grid-lite
-Lightweight SCSS gird framework
+Lightweight SCSS grid framework
